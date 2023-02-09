@@ -1,0 +1,19 @@
+.DS_Store
+
+# Node files
+node_modules/
+
+# Genrated javascript, css, and site files.
+css/
+javascript/
+dist/
+
+# Ignore event-specific css files generated from sass files.
+# If using a CSS file, just add it explicitly.
+site/**/*.css
+
+# Ignore the generated pandoc json files since they are for debugging purposes
+*.pandoc.json
+
+# Ignore temp files
+~*
