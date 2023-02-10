@@ -1,0 +1,219 @@
+@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700;800;900&family=Prata&display=swap");
+
+:root {
+  --ButtonBlue: Cornflowerblue;
+  --ButtonWhite: white;
+  --ButtonDisabled: grey;
+  --white: #ffffff;
+  --MouseHover: pointer;
+}
+
+* {
+  font-family: "Atkinson Hyperlegible", sans-serif;
+}
+
+html {
+  min-height: 100%; /* make sure it is at least as tall as the viewport */
+  position: relative;
+}
+
+body {
+  height: 100%; /* force the BODY element to match the height of the HTML element */
+}
+
+.center-content {
+  text-align: center;
+  margin-left: auto;
+}
+
+h1 {
+  font-family: "Cinzel Decorative", cursive;
+  margin-bottom: 0;
+  font-size: xx-large;
+}
+
+h2 {
+  font-family: "Prata", serif;
+  margin-top: 0;
+  font-size: large;
+}
+
+h2.cinzel {
+  font-family: "Cinzel", cursive;
+  font-size: xx-large;
+}
+
+.btn {
+  background-color: var(--ButtonWhite);
+  color: var(--ButtonBlue);
+  border: 2px solid var(--ButtonBlue);
+  border-radius: 5px;
+
+  padding: 15px 32px;
+
+  text-align: center;
+  text-decoration: none;
+  margin-left: 10px;
+  margin-right: 10px;
+
+  :hover :not(.btn-disabled) {
+    filter: brightness(120%);
+    cursor: var(--MouseHover);
+  }
+}
+
+.btn-primary {
+  background-color: var(--ButtonBlue);
+  color: var(--ButtonWhite);
+}
+
+.btn-disabled {
+  border-color: var(--ButtonDisabled);
+  background-color: var(--ButtonWhite);
+  color: var(--ButtonDisabled);
+}
+
+.btn-group {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.col-group {
+  $column-margin: 25px;
+  position: absolute;
+  height: calc(100vh - $column-margin - $column-margin);
+  top: 0;
+  min-width: 150px;
+  margin: $column-margin;
+
+  background-image: url(../assets/col_top.png), url(../assets/col_bot.png),
+    url(../assets/col_mid.png);
+  background-position: top, bottom, center;
+  background-repeat: no-repeat, no-repeat, repeat-y;
+  background-size: contain;
+}
+
+.col-group-left {
+  left: 0;
+}
+
+.col-group-right {
+  right: 0;
+}
+
+.menu-group {
+  position: -webkit-fixed; /* Safari */
+  position: fixed;
+  top: 20px;
+  margin-left: 200px;
+  width: fit-content;
+}
+
+.menu-item {
+  padding: 5px;
+}
+
+.menu-selected {
+  border: 2px solid black;
+}
+
+.menu-item a {
+  text-decoration: none;
+  color: black;
+}
+
+.puzzle-group {
+  /* background-color: red; */
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: space-between;
+  justify-content: space-evenly;
+  row-gap: 20px;
+
+  padding: 20px;
+}
+
+.puzzle-item {
+  display: table;
+  width: 100px;
+  height: 200px;
+  border: 2px solid black;
+  text-align: center;
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  padding: 10px;
+
+  :hover {
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  }
+}
+
+.puzzle-icon img {
+  /* width: 100%; */
+  /* height: 40px; */
+  display: table-row;
+  width: 100%;
+  border-bottom: 2px solid black;
+  /* height: 100px; */
+
+  /* display: table-header-group; */
+
+  /* height:0; */
+}
+
+.puzzle-title {
+  text-transform: uppercase;
+}
+
+.puzzle-status {
+  accent-color: green;
+  /* background-color: red; */
+
+  display: flex;
+  justify-content: center; /* align horizontal */
+  align-items: center; /* align vertical */
+
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  transform: scale(2);
+  padding: 10px;
+}
+
+@media (min-width: 1921px) {
+  /*Ultrawides*/
+
+  .body-content {
+    margin-left: 30%;
+    margin-right: 30%;
+  }
+}
+
+@media (max-width: 1920px) {
+  /* Reduce extreme margins a little bit to fit the screen better*/
+  .body-content {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+}
+
+@media (max-width: 1000px) {
+  /* Change to a hamburger menu, keep columns though */
+}
+
+@media (max-width: 1000px) {
+  /* Already a hamburger menu, remove columns, remove extreme margins*/
+  .body-content {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .col-group {
+    display: none;
+  }
+}

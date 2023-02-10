@@ -50,21 +50,28 @@ function watchFiles() {
 
 // Compile shared CSS files and dump it in the specified output path.
 function compileCSS() {
-    return src("./site/css")
+    return src("./site/css/*.scss")
         .pipe(plumber({ errorHandler: onError }))
         .pipe(sass.sync())
-        .pipe(dest("./css"));
+        .pipe(dest("./dist/css"));
 };
 
 function copyHTML() {
-    return src("./site/html")
+    return src("./site/html/*.*")
         .pipe(plumber({ errorHandler: onError }))
-        .pipe(dest("./"));
+        .pipe(dest("./dist"));
 }
 
-const build = series(
+function copyAssets() {
+    return src("./site/assets/*.*")
+        .pipe(plumber({ errorHandler: onError }))
+        .pipe(dest("./dist/assets"));
+}
+
+const build = parallel(
     compileCSS,
     copyHTML,
+    copyAssets,
 );
 
 const serveFiles = parallel(
