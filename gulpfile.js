@@ -56,6 +56,13 @@ function compileCSS() {
         .pipe(dest("./dist/css"));
 };
 
+// Compile shared CSS files and dump it in the specified output path.
+function copyStaticCSS() {
+    return src("./site/css/*.css")
+        .pipe(plumber({ errorHandler: onError }))
+        .pipe(dest("./dist/css"));
+};
+
 function copyHTML() {
     return src("./site/html/*.*")
         .pipe(plumber({ errorHandler: onError }))
@@ -63,13 +70,14 @@ function copyHTML() {
 }
 
 function copyAssets() {
-    return src("./site/assets/*.*")
+    return src("./site/assets/**/*.*")
         .pipe(plumber({ errorHandler: onError }))
         .pipe(dest("./dist/assets"));
 }
 
 const build = parallel(
     compileCSS,
+    copyStaticCSS,
     copyHTML,
     copyAssets,
 );

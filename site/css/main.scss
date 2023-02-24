@@ -1,18 +1,88 @@
+@import "libs/vars";
+@import "libs/functions";
+@import "libs/mixins";
+@import "libs/vendor";
+@import "libs/breakpoints";
+@import "libs/html-grid";
+@import "fontawesome-all.min.css";
 @import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700;800;900&family=Prata&display=swap");
+
+// Breakpoints.
+
+@include breakpoints(
+  (
+    xlarge: (
+      1281px,
+      1680px,
+    ),
+    large: (
+      981px,
+      1280px,
+    ),
+    medium: (
+      737px,
+      980px,
+    ),
+    small: (
+      481px,
+      736px,
+    ),
+    xsmall: (
+      361px,
+      480px,
+    ),
+    xxsmall: (
+      null,
+      360px,
+    ),
+    xlarge-to-max: "(min-width: 1681px)",
+    small-to-xlarge: "(min-width: 481px) and (max-width: 1680px)",
+  )
+);
+
+// Base.
+
+@import "base/reset";
+@import "base/page";
+@import "base/typography";
+
+// Component.
+
+@import "components/row";
+@import "components/section";
+@import "components/form";
+@import "components/box";
+@import "components/icon";
+@import "components/image";
+@import "components/list";
+@import "components/actions";
+@import "components/icons";
+@import "components/contact";
+@import "components/pagination";
+@import "components/table";
+@import "components/button";
+@import "components/mini-posts";
+@import "components/features";
+@import "components/posts";
+
+// Layout.
+
+@import "layout/wrapper";
+@import "layout/main";
+@import "layout/sidebar";
+@import "layout/header";
+@import "layout/banner";
+@import "layout/footer";
+@import "layout/menu";
+
+$default-margin: 25px;
 
 :root {
   --ButtonBlue: Cornflowerblue;
   --ButtonWhite: white;
   --ButtonDisabled: grey;
-  --white: #ffffff;
-  --MouseHover: pointer;
-}
 
-* {
   font-family: "Atkinson Hyperlegible", sans-serif;
-}
-
-html {
   min-height: 100%; /* make sure it is at least as tall as the viewport */
   position: relative;
 }
@@ -24,6 +94,7 @@ body {
 .center-content {
   text-align: center;
   margin-left: auto;
+  margin-right: auto;
 }
 
 h1 {
@@ -58,7 +129,7 @@ h2.cinzel {
 
   :hover :not(.btn-disabled) {
     filter: brightness(120%);
-    cursor: var(--MouseHover);
+    cursor: pointer;
   }
 }
 
@@ -79,53 +150,57 @@ h2.cinzel {
   justify-content: center;
 }
 
+#wrapper {
+  min-height: 100vh;
+  display: grid;
+  grid-template:
+    "sidebar col-left header col-right" auto
+    "sidebar col-left content col-right" 1fr
+    "sidebar col-left footer col-right" auto /
+    auto auto 1fr auto;
+}
+
 .col-group {
-  $column-margin: 25px;
-  position: absolute;
-  height: calc(100vh - $column-margin - $column-margin);
   top: 0;
-  min-width: 150px;
-  margin: $column-margin;
+  min-width: 300px;
+  margin: $default-margin;
 
-  background-image: url(../assets/col_top.png), url(../assets/col_bot.png),
-    url(../assets/col_mid.png);
-  background-position: top, bottom, center;
+  background-image: url(../assets/col_top.png), url(../assets/col_bot.png), url(../assets/col_mid.png);
+  // background-image: url(../assets/columnend.svg), url(../assets/col_bot.png), url(../assets/columnmiddle.svg);
   background-repeat: no-repeat, no-repeat, repeat-y;
-  background-size: contain;
+  background-size: 150px;
+
+  &#col-left {
+    background-position: top right, bottom right, right;
+  }
+
+  &#col-right {
+    background-position: top left, bottom left, left;
+  }
 }
 
-.col-group-left {
-  left: 0;
+#col-left {
+  grid-area: col-left;
 }
 
-.col-group-right {
-  right: 0;
+#col-right {
+  grid-area: col-right;
 }
 
-.menu-group {
-  position: -webkit-fixed; /* Safari */
-  position: fixed;
-  top: 20px;
-  margin-left: 200px;
-  width: fit-content;
+#header {
+  grid-area: header;
 }
 
-.menu-item {
-  padding: 5px;
+#content {
+  grid-area: content;
 }
 
-.menu-selected {
-  border: 2px solid black;
-}
-
-.menu-item a {
-  text-decoration: none;
-  color: black;
+#footer {
+  grid-area: footer;
+  margin-bottom: $default-margin * 2;
 }
 
 .puzzle-group {
-  /* background-color: red; */
-
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -188,27 +263,24 @@ h2.cinzel {
 @media (min-width: 1921px) {
   /*Ultrawides*/
 
-  .body-content {
-    margin-left: 30%;
-    margin-right: 30%;
+  #content {
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
   }
 }
 
 @media (max-width: 1920px) {
   /* Reduce extreme margins a little bit to fit the screen better*/
-  .body-content {
-    margin-left: 20%;
-    margin-right: 20%;
+  #content {
+    margin-left: 50px;
+    margin-right: 50px;
   }
 }
 
 @media (max-width: 1000px) {
-  /* Change to a hamburger menu, keep columns though */
-}
-
-@media (max-width: 1000px) {
   /* Already a hamburger menu, remove columns, remove extreme margins*/
-  .body-content {
+  #content {
     margin-left: 5px;
     margin-right: 5px;
   }
