@@ -120,6 +120,8 @@
 
     &:before {
       content: "\f0c9";
+      color: _palette(bg);
+      text-shadow: 1px 1px 10px black;
       font-size: 2rem;
       height: inherit;
       left: 0;
@@ -132,42 +134,7 @@
   }
 
   &.inactive {
-    > .inner {
-      margin-left: (_size(sidebar-width) * -1);
-    }
-  }
-
-  @include breakpoint("<=xlarge") {
-    $pad: math.div(1.5em, 0.9);
-
-    width: _size(sidebar-width-alt);
-
-    > .inner {
-      @include padding($pad, $pad, (0, 0, $pad, 0));
-      width: _size(sidebar-width-alt);
-
-      > .alt {
-        margin: ($pad * -1) 0 ($pad * 2) ($pad * -1);
-        padding: $pad;
-        width: calc(100% + #{$pad * 2});
-      }
-    }
-
-    .toggle {
-      height: 6.25em;
-      left: _size(sidebar-width-alt);
-      line-height: 6.25em;
-      text-indent: 5em;
-      width: 5em;
-
-      &:before {
-        font-size: 1.5rem;
-      }
-    }
-
-    &.inactive {
-      margin-left: ((_size(sidebar-width-alt)) * -1);
-    }
+    margin-left: (_size(sidebar-width) * -1);
   }
 
   @include breakpoint("<=large") {

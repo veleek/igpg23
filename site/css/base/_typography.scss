@@ -18,10 +18,6 @@ textarea {
   font-weight: _font(weight);
   line-height: 1.65;
 
-  @include breakpoint("<=xlarge") {
-    font-size: 11pt;
-  }
-
   @include breakpoint("<=large") {
     font-size: 10pt;
   }
@@ -34,10 +30,7 @@ textarea {
 a {
   @include vendor(
     "transition",
-    (
-      "color #{_duration(transition)} ease-in-out",
-      "border-bottom-color #{_duration(transition)} ease-in-out"
-    )
+    ("color #{_duration(transition)} ease-in-out", "border-bottom-color #{_duration(transition)} ease-in-out")
   );
   border-bottom: dotted 1px;
   color: _palette(accent);
@@ -152,8 +145,7 @@ blockquote {
   border-left: solid 3px _palette(border);
   font-style: italic;
   margin: 0 0 _size(element-margin) 0;
-  padding: math.div(_size(element-margin), 4) 0
-    math.div(_size(element-margin), 4) _size(element-margin);
+  padding: math.div(_size(element-margin), 4) 0 math.div(_size(element-margin), 4) _size(element-margin);
 }
 
 code {

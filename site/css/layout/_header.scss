@@ -12,6 +12,7 @@
   @include vendor("display", "flex");
   border-bottom: solid 5px _palette(accent);
   padding: 6em 0 1em 0;
+  margin-bottom: 1em;
   position: relative;
 
   > * {

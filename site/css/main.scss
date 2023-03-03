@@ -1,3 +1,5 @@
+@use "sass:color";
+
 @import "libs/vars";
 @import "libs/functions";
 @import "libs/mixins";
@@ -78,9 +80,9 @@
 $default-margin: 25px;
 
 :root {
-  --ButtonBlue: Cornflowerblue;
-  --ButtonWhite: white;
-  --ButtonDisabled: grey;
+  --ButtonBlue: #{_palette(accent)};
+  --ButtonWhite: #{_palette(bg)};
+  --ButtonDisabled: #{_palette(fg-light)};
 
   font-family: "Atkinson Hyperlegible", sans-serif;
   min-height: 100%; /* make sure it is at least as tall as the viewport */
@@ -89,6 +91,21 @@ $default-margin: 25px;
 
 body {
   height: 100%; /* force the BODY element to match the height of the HTML element */
+  position: relative;
+
+  &:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+    background-image: url("../assets/marble.jpg");
+    // background-repeat: repeat;
+    // background-size: cover;
+  }
 }
 
 .center-content {
@@ -146,45 +163,69 @@ h2.cinzel {
 
 .btn-group {
   margin-top: 30px;
+  margin-bottom: 30px;
   display: flex;
   justify-content: center;
 }
 
 #wrapper {
+  position: relative;
   min-height: 100vh;
   display: grid;
   grid-template:
-    "sidebar col-left header col-right" auto
-    "sidebar col-left content col-right" 1fr
-    "sidebar col-left footer col-right" auto /
-    auto auto 1fr auto;
+    "sidebar space-left col-left header col-right space-right" auto
+    "sidebar space-left col-left content col-right space-right" 1fr
+    "sidebar space-left col-left footer col-right space-right" auto /
+    auto 1fr auto auto auto 1fr;
+
+  $fade-width: 100px;
+  $fade-width2: 5px;
+  $left-fade: 150px;
+  $right-fade: 1500px;
+  $fade-mid: color.mix(_palette(accent), _palette(bg));
+
+  // background-image: linear-gradient(
+  //   to right,
+  //   _palette(accent) $left-fade,
+  //   $fade-mid ($left-fade + $fade-width2),
+  //   _palette(bg) ($left-fade + $fade-width),
+  //   _palette(bg) ($right-fade - $fade-width),
+  //   $fade-mid ($right-fade - $fade-width2),
+  //   _palette(accent) $right-fade
+  // );
+
+  #space-left {
+    grid-area: space-left;
+    background-image: linear-gradient(to right, _palette(accent-bold), 40%, transparentize(_palette(bg), 1));
+  }
+
+  #space-right {
+    grid-area: space-right;
+    background-image: linear-gradient(to left, _palette(accent-bold), 40%, transparentize(_palette(bg), 1));
+  }
 }
 
 .col-group {
   top: 0;
-  min-width: 300px;
+
   margin: $default-margin;
 
   background-image: url(../assets/col_top.png), url(../assets/col_bot.png), url(../assets/col_mid.png);
   // background-image: url(../assets/columnend.svg), url(../assets/col_bot.png), url(../assets/columnmiddle.svg);
   background-repeat: no-repeat, no-repeat, repeat-y;
-  background-size: 150px;
+  background-size: 10em;
+  // The extra with here accounts for the hamburger button which overhangs the edge of the menu.
+  min-width: 13em;
 
   &#col-left {
+    grid-area: col-left;
     background-position: top right, bottom right, right;
   }
 
   &#col-right {
+    grid-area: col-right;
     background-position: top left, bottom left, left;
   }
-}
-
-#col-left {
-  grid-area: col-left;
-}
-
-#col-right {
-  grid-area: col-right;
 }
 
 #header {
@@ -260,23 +301,24 @@ h2.cinzel {
   padding: 10px;
 }
 
-@media (min-width: 1921px) {
+@media (min-width: 1000px) {
+  // @media (min-width: 1921px) {
   /*Ultrawides*/
 
   #content {
     margin-left: auto;
     margin-right: auto;
-    width: 800px;
+    max-width: 50em;
   }
 }
 
-@media (max-width: 1920px) {
-  /* Reduce extreme margins a little bit to fit the screen better*/
-  #content {
-    margin-left: 50px;
-    margin-right: 50px;
-  }
-}
+// @media (max-width: 1920px) {
+//   /* Reduce extreme margins a little bit to fit the screen better*/
+//   #content {
+//     margin-left: 50px;
+//     margin-right: 50px;
+//   }
+// }
 
 @media (max-width: 1000px) {
   /* Already a hamburger menu, remove columns, remove extreme margins*/
