@@ -2,6 +2,8 @@
 const { src, dest, watch, series, parallel } = require("gulp");
 const notify = require("gulp-notify");
 const plumber = require("gulp-plumber");
+const gulp_nunjucks = require("gulp-nunjucks");
+const nunjucks = require("nunjucks");
 
 // Styles
 const sass = require("gulp-sass")(require("sass"));
@@ -69,6 +71,17 @@ function copyHTML() {
         .pipe(dest("./dist"));
 }
 
+function copyTemplates() {
+    var options = {
+        env: new nunjucks.Environment(
+            new nunjucks.FileSystemLoader("./site"),
+        )
+    };
+    return src("./site/pages/*.njk")
+        .pipe(gulp_nunjucks.compile(null, options))
+        .pipe(dest("./dist"));
+}
+
 function copyAssets() {
     return src("./site/assets/**/*.*")
         .pipe(plumber({ errorHandler: onError }))
@@ -78,7 +91,8 @@ function copyAssets() {
 const build = parallel(
     compileCSS,
     copyStaticCSS,
-    copyHTML,
+    //copyHTML,
+    copyTemplates,
     copyAssets,
 );
 

@@ -206,7 +206,9 @@
 							.css('top', '');
 					else
 						$sidebar_inner
-							.css('top', -1 * x);
+							// TODO: Do we need to do anything with this?
+							.css('top', 0);
+					//.css('top', -1 * x);
 
 				}
 				else {
