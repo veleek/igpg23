@@ -30,9 +30,9 @@ textarea {
 a {
   @include vendor(
     "transition",
-    ("color #{_duration(transition)} ease-in-out", "border-bottom-color #{_duration(transition)} ease-in-out")
+    ("color #{_duration(transition-short)} ease-in-out", "border-bottom-color #{_duration(transition)} ease-in-out")
   );
-  border-bottom: dotted 1px;
+  //border-bottom: dotted 1px;
   color: _palette(accent);
   text-decoration: none;
 

@@ -7,6 +7,7 @@ $misc: (
 $duration: (
   nav: 0.5s,
   transition: 0.2s,
+  transition-short: 0.1s,
 );
 
 // Size.
@@ -22,6 +23,7 @@ $size: (
 // Font.
 $font: (
   family: (
+    "Atkinson Hyperlegible",
     "Open Sans",
     sans-serif,
   ),

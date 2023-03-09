@@ -56,10 +56,23 @@
       text-decoration: none;
       color: black;
     }
+
+    &:hover {
+      background-color: _palette(accent);
+
+      a {
+        color: white !important;
+      }
+    }
   }
 
   .menu-selected {
-    border: 2px solid black;
+    background-color: _palette(accent);
+
+    a {
+      color: white !important;
+      cursor: default;
+    }
   }
 
   h2 {
@@ -121,7 +134,6 @@
     &:before {
       content: "\f0c9";
       color: _palette(bg);
-      text-shadow: 1px 1px 10px black;
       font-size: 2rem;
       height: inherit;
       left: 0;
@@ -130,6 +142,10 @@
       text-indent: 0;
       top: 0;
       width: inherit;
+
+      @include breakpoint(">small") {
+        text-shadow: 1px 1px 10px black;
+      }
     }
   }
 
@@ -189,7 +205,7 @@
       &:before {
         color: _palette(fg);
         margin-left: math.div(-0.125em, 2);
-        margin-top: math.div(-0.5em, 2);
+        margin-top: math.div(-0.6em, 1);
         font-size: 1.1rem;
         z-index: 1;
       }

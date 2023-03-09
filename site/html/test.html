@@ -1,0 +1,122 @@
+<html>
+
+<head>
+    <style>
+        :root {
+            --a: 90deg;
+            --l: 10%;
+            --c: orange;
+            --hint: 50%;
+            --hintr: 50%;
+            --sc: teal;
+            --ec: orange;
+        }
+
+        .box {
+            cursor: pointer;
+            height: 200px;
+            transition: --a 0.5s 0.1s, --l 0.5s, --c 0.8s;
+            /* background: linear-gradient(var(--a), var(--c) var(--l), blue, var(--c) calc(100% - var(--l))); */
+        }
+
+        .box:hover {
+            --a: 360deg;
+            --l: 40%;
+            --c: green;
+            --hint: 95%;
+            --hintr: 5%;
+        }
+
+        body:hover {
+            --hint: 99%;
+            --hintr: 1%;
+        }
+
+        div {
+            width: 800px;
+            height: 20px;
+            transition: --hint 1s linear, --hintr 1s linear;
+            text-align: center;
+            padding: 20px;
+        }
+
+        div:nth-child(2) {
+            background: linear-gradient(to right, var(--sc), var(--hint), var(--ec));
+        }
+
+        div:nth-child(3) {
+            background: linear-gradient(to left, var(--ec), var(--hintr), var(--sc));
+        }
+
+        div:nth-child(4) {
+            background: linear-gradient(to right, var(--sc), var(--hintr), var(--ec));
+        }
+
+        div:nth-child(5) {
+            background: linear-gradient(to left, var(--ec), var(--hint), var(--sc));
+        }
+
+        /*
+        div:nth-child(2) {
+            background-image: linear-gradient(to left, red, green);
+        }
+
+        div:nth-child(3) {
+            background-image: linear-gradient(to right, blue, 25%, orange);
+        }
+
+        div:nth-child(4) {
+            background-image: linear-gradient(to right, blue, 50%, orange);
+        }
+
+        div:nth-child(5) {
+            background-image: linear-gradient(to left, red, 50%, aqua);
+        }
+
+        div:nth-child(6) {
+            background-image: linear-gradient(to left, red, 95%, aqua);
+        }
+
+        div:nth-child(7) {
+            background-image: linear-gradient(to right, blue, 50%, orange);
+        }
+
+        div:nth-child(8) {
+            background: linear-gradient(to right, rgba(0, 0, 255, 1) 0%, rgba(128, 83, 128, 1) 95%, rgba(255, 165, 0, 1) 100%);
+
+        }
+
+        div:nth-child(9) {
+            background: linear-gradient(to left, orange 0%, rgba(128, 83, 128, 1) 5%, blue 100%);
+        }
+
+        div:nth-child(10) {
+            background-image: linear-gradient(to left, orange, 15%, blue);
+        } */
+    </style>
+</head>
+
+<body>
+    <h1>Stuff</h1>
+    <main>
+        <div class="box"></div>
+        <div>Left to Right 99% hint</div>
+        <div>Right to left 1% hint</div>
+        <div>Left to Right 1% hint</div>
+        <div>Right to Left 99% hint</div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </main>
+    </p>
+</body>
+
+</html>
