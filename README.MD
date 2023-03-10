@@ -1,4 +1,4 @@
-# To get it working
+# Building
 
 ```bash
 npm install
@@ -13,3 +13,9 @@ New pages should be added to [the pages folder](./site/pages).  Just copy one of
 {% block content %}
 {% endblock %}
 ```
+
+# Viewing
+
+There is a [workflow](./.github/workflows/static.yml) that runs whenever a change is pushed to the `main` branch to publish the content to GitHub pages.
+
+[https://www.veleek.com/igpg23]
