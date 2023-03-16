@@ -5,10 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" type="text/css" href="./css/main.css"/>
-        <title>Microsoft Intern Game: CHAOS</title>
+        <title>MSIG: PANTHEON</title>
     </head>
     <body>
         <div id="wrapper">
+            <div id="header" class="center-content">
+                <h1>PANTHEON</h1>
+                <h2>Microsoft Intern Game Summer 2023
+                </h2>
+                {% block subheader %}{% endblock %}
+            </div>
+            <!-- Main body content-->
             {% block content %}
                 This is the default content
             {% endblock %}
@@ -25,28 +32,21 @@
             </div>
             <div id="space-left"></div>
             <div id="space-right"></div>
-            <div id="footer" class="center-content">
-                <a href="/contact">Contact Us</a>
-                |
-                <a href="/tou">Terms of Use</a>
-                |
-                <a href="/copyright">Copyright</a>
-            </div>
             <div id="sidebar">
                 <div class="inner">
                     <nav id="menu">
-                        <div class="menu-item menu-selected">
-                            <a href="index.html">Home</a>
-                        </div>
-                        <div class="menu-item">
-                            <a href="puzzles.html">Puzzles</a>
-                        </div>
-                        <div class="menu-item">
-                            <a href="apply.html">Apply</a>
-                        </div>
-                        <div class="menu-item">
-                            <a href="what-is-this.html">What is this?</a>
-                        </div>
+                        {% macro menuItem(title, url) %}
+                            {% set slug = title|lower|replace(' ', '-')|replace('?','') %}
+                            <div class="menu-item {% if currentPage == slug %}menu-selected{% endif %}">
+                                <a href="{{ url }}">{{ title }}</a>
+                            </div>
+                        {% endmacro %}
+                        {{ menuItem('Home','index.html') }}
+                        {{ menuItem('Puzzles','puzzles.html') }}
+                        {{ menuItem('Apply','apply.html') }}
+                        {{ menuItem('What is this?','what-is-this.html') }} <hr> {{ menuItem('Contact Us','contact.html') }}
+                        {{ menuItem('Terms of Use','tou.html') }}
+                        {{ menuItem('Copyright','copyright.html') }}
                     </nav>
                 </div>
             </div>

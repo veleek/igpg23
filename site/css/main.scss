@@ -213,7 +213,7 @@ h2.cinzel {
   align-items: flex-start;
   align-content: space-between;
   justify-content: space-evenly;
-  row-gap: 20px;
+  row-gap: 10px;
 
   padding: 20px;
 }
@@ -225,11 +225,13 @@ h2.cinzel {
   width: 150px;
   height: 200px;
   border: 2px solid black;
+  background: _palette(bg);
   text-align: center;
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border-radius: 5px;
   padding: 10px;
+  margin: 2px;
 
   &:hover {
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
@@ -251,11 +253,14 @@ h2.cinzel {
 
 .puzzle-title {
   text-transform: uppercase;
+  font-size: large;
 }
 
 .puzzle-status {
-  accent-color: green;
-  /* background-color: red; */
+  input {
+    appearance: auto;
+  }
+  accent-color: _palette(accent);
 
   display: flex;
   justify-content: center; /* align horizontal */
