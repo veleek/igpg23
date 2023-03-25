@@ -129,16 +129,18 @@ h2.cinzel {
   //   _palette(accent) $right-fade
   // );
 
-  #space-left {
-    grid-area: space-left;
-    background-image: linear-gradient(to right, _palette(accent-bold), 40%, transparentize(_palette(bg), 1));
-    min-width: 3em;
-  }
+  @include breakpoint(">=large") {
+    #space-left {
+      grid-area: space-left;
+      background-image: linear-gradient(to right, _palette(accent-bold), 40%, transparentize(_palette(bg), 1));
+      min-width: 3em;
+    }
 
-  #space-right {
-    grid-area: space-right;
-    background-image: linear-gradient(to left, _palette(accent-bold), 40%, transparentize(_palette(bg), 1));
-    min-width: 3em;
+    #space-right {
+      grid-area: space-right;
+      background-image: linear-gradient(to left, _palette(accent-bold), 40%, transparentize(_palette(bg), 1));
+      min-width: 3em;
+    }
   }
 }
 
@@ -220,8 +222,6 @@ h2.cinzel {
 
 .puzzle-item {
   display: table;
-  // min-width: 100px;
-  // max-width: 100px;
   width: 150px;
   height: 200px;
   border: 2px solid black;
@@ -236,6 +236,13 @@ h2.cinzel {
   &:hover {
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
   }
+
+  // @include breakpoint("<=small") {
+  //   & {
+  //     width: 100px;
+  //     height: 133px;
+  //   }
+  // }
 }
 
 .puzzle-icon img {
