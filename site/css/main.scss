@@ -129,7 +129,7 @@ h2.cinzel {
   //   _palette(accent) $right-fade
   // );
 
-  @include breakpoint(">=large") {
+  @include breakpoint(">=medium") {
     #space-left {
       grid-area: space-left;
       background-image: linear-gradient(to right, _palette(accent-bold), 40%, transparentize(_palette(bg), 1));
@@ -203,7 +203,7 @@ h2.cinzel {
     grid-area: col-right;
   }
 
-  @include breakpoint("<large") {
+  @include breakpoint("<medium") {
     /* Remove columns */
     display: none;
   }
